@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Angular Simple Skeleton</title>
+    <style>
+      [data-scroll-id] {
+        height: 1600px;
+        scroll-behavior: smooth;
+      }
+
+    </style>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/foundation.css">
+</head>
+<body ng-app=demo>
+
+    <div class=row ng-controller=DemoCtrl>
+      <h2><code>scroll-manager</code> demo</h2>
+      <p>Scroll manager keeps your scrolling logic where it belongs - in the view. Emit semantic events from your business logic - like <code>termsAccepted</code> - and configure how the view will scroll in response.</p>
+      <p>You can configure how the scrolling will actually occur - in this case we're toggling between instant (the default) and a jQuery scroll. You can use whatever you like.</p>
+      <button ng-click='toggleSmooth()'>Use {{ isSmooth() ? "default" : "smooth" }}</button>
+    </div>
+
+    <!-- (1/3) compartmentalised scrolling - provide CSS selectors for each event
+         that should trigger a scroll -->
+    <div scroll-triggers="{
+        'termsAccepted': '[data-scroll-id=checkout]',
+        'termsRequired': '[data-scroll-id=terms]' 
+      }" class="row" ng-controller=CheckoutCtrl>
+
+
+      <!-- (2/3) Use whatever CSS selector you fancy to identify scroll targets! -->
+      <div data-scroll-id=checkout  class=panel>
+        <h3>Checkout</h3>
+        <p>Before you checkout, you must read the terms.</p>
+        <button ng-click=continue()>Read terms</button>
+        <button ng-disabled="!terms.accepted" ng-click="checkout()">Checkout</button>
+      </div>
+
+
+      <div data-scroll-id=terms ng-controller=TermsCtrl class=panel>
+        <h3>Terms</h3>
+        <p>
+          Really, really, really long terms.
+        </p>
+        <button ng-click=accept()>Accept terms</button>
+      </div>
+
+    </div>
+
+
+    <script src="../vendor/angular.js"></script>
+    <script src="../index.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      angular.module("demo", ["scroll-manager"])
+        .controller("TermsCtrl", function($scope) {
+            $scope.accept = function() {
+              // (3/3) we emit events in language of your domain,
+              // keeping the controller ignorant of:
+              //  1. the DOM
+              //  2. what occurs after it has done its job (in this case, telling the world the terms have been accepted)
+              $scope.terms.accepted = true;
+              $scope.$emit("termsAccepted");
+            }
+        })
+        .controller("CheckoutCtrl", function($scope) {
+
+            $scope.terms = {};
+
+            $scope.continue = function() {
+              $scope.$emit("termsRequired");
+            };
+
+            $scope.checkout = function() {
+              alert("I hope you enjoy using scroll-manager!");
+            };
+        })
+
+        // this is just for the demo, you can safely ignore!
+        .controller("DemoCtrl", function($scope, scrollManager) {
+
+            $scope.isSmooth = function() {
+              return scrollManager.scroll === smooth;
+            }
+
+            $scope.toggleSmooth = function() {
+              scrollManager.scroll = scrollManager.scroll == smooth ? instant : smooth;
+            }
+
+            function instant(el) {
+              el.scrollIntoView()
+            }
+
+            function smooth(el) {
+              $('html,body').animate({
+                scrollTop: $(el).offset().top
+              }, 125);
+            }
+        });
+      
+
+    </script>
+</body>

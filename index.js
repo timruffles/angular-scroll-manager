@@ -1,24 +1,12 @@
 angular.module("scroll-manager", [])
-  .provider("scrollManagerScrollTo", function() {
+  .service("scrollManager", function() {
 
-    var scroller = defaultScroller;
-
-    this.$get = function() {
-      return scroller;
-    }
-
-    this.setScroller = function(fn) {
-      if(typeof fn != 'function') {
-        throw new Error("scroller must be a function");
-      }
-      scroller = fn;
-    }
-    
-    function defaultScroller(el) {
+    this.scroll = function defaultScroller(el) {
       el.scrollIntoView()
-    }
+    };
+    
   })
-  .directive("scrollTriggers", function(scrollManagerScrollTo) {
+  .directive("scrollTriggers", function(scrollManager) {
     return {
       restrict: "A",
       link: function(scope, $el, attrs) {
@@ -49,7 +37,7 @@ angular.module("scroll-manager", [])
         }, true);
 
         function handler(event) {
-          scrollManagerScrollTo( el.querySelector(currentTargets[event.name]) );
+          scrollManager.scroll( el.querySelector(currentTargets[event.name]) );
         }
 
       },
