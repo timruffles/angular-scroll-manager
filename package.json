@@ -1,27 +1,24 @@
 {
-  "name": "scroll-manager",
+  "name": "angular-scroll-manager",
   "version": "1.0.0",
-  "description": "Angular is really easy to get into if you keep it simple. Ignore all the moving parts like bower, yeoman suggested by the docs. Learn angular first.",
-  "main": "angular.js",
-  "directories": {
-    "test": "test"
-  },
+  "description": "angular-scroll-manager keeps your scrolling logic where it belongs - in the view.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma run",
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/timruffles/simple-angular-skeleton.git"
+    "url": "https://github.com/timruffles/angular-scroll-manager.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tim Ruffles <timruffles@gmail.com>",
+  "license": "MIT",
   "files": [
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/timruffles/simple-angular-skeleton/issues"
+    "url": "https://github.com/timruffles/angular-scroll-manager/issues"
   },
-  "homepage": "https://github.com/timruffles/simple-angular-skeleton",
+  "homepage": "https://github.com/timruffles/angular-scroll-manager",
   "devDependencies": {
     "chai": "^1.9.1",
     "heredoc": "^1.2.0",
