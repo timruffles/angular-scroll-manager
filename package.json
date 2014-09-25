@@ -1,0 +1,38 @@
+{
+  "name": "scroll-manager",
+  "version": "1.0.0",
+  "description": "Angular is really easy to get into if you keep it simple. Ignore all the moving parts like bower, yeoman suggested by the docs. Learn angular first.",
+  "main": "angular.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timruffles/simple-angular-skeleton.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/timruffles/simple-angular-skeleton/issues"
+  },
+  "homepage": "https://github.com/timruffles/simple-angular-skeleton",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "heredoc": "^1.2.0",
+    "karma": "^0.12.23",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-cli": "0.0.4",
+    "karma-mocha": "^0.1.9",
+    "karma-sinon-chai": "^0.2.0",
+    "mocha": "^1.21.4",
+    "pprint": "0.0.1",
+    "sinon": "^1.10.3"
+  }
+}
