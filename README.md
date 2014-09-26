@@ -1,5 +1,8 @@
 # Angular `scroll-manager`
 
+![Build status](https://travis-ci.org/timruffles/angular-scroll-manager.svg)
+
+
 `scroll-manager` keeps your scrolling logic where it belongs - in the view.
 
 Emit semantic events from your business logic - like <code>termsAccepted</code> - and configure how the view will scroll in response. You can configure how the scrolling will actually occur - by default it's instant, but use whatever method you like to create a silky-smooth animation, or whatever you can think up!
